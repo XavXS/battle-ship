@@ -1,3 +1,5 @@
 import './style.css';
+import Game from './modules/game';
+import initUI from './modules/ui';
 
-console.log('hello world');
+initUI(Game());

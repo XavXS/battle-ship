@@ -1,3 +1,145 @@
+:root {
+    --square: rgb(215, 215, 215);
+    --square-hover: rgb(235, 235, 235);
+    --square-valid: rgb(141, 225, 135);
+    --square-invalid: rgb(225, 135, 135);
+    --square-ship: rgb(135, 135, 225);
+    --start-button: rgb(107, 211, 100);
+    --rotate-button: rgb(112, 112, 232);
+    --shadow: rgba(0, 0, 0, 0.25);
+    --overlay: rgba(116, 94, 255, 0.273);
+    --error: rgb(255, 66, 66);
+    --text: rgb(100, 100, 100);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 32px;
+    font-family: sans-serif;
+    color: var(--text);
+}
+
 body {
-    background-color: green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+span {
+    font-size: 48px;
+    margin-bottom: 32px;
+}
+
+button {
+    font-size: 16px;
+    width: 100px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+    filter: brightness(1.05);
+}
+
+.boards {
+    display: flex;
+    gap: 16px;
+}
+
+.board-container {
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--overlay);
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.setup-window {
+    background-color: white;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 1px 1px 3px var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    margin-top: 16px;
+    display: flex;
+    justify-content: end;
+    gap: 4px;
+}
+
+.rotate {
+    background-color: var(--rotate-button);
+}
+
+.start {
+    background-color: var(--start-button);
+    position: relative;
+}
+
+.menu {
+    margin-top: 16px;
+    background-color: var(--start-button);
+}
+
+.start.invalid::after {
+    position: absolute;
+    width: 200px;
+    bottom: -24px;
+    right: 0px;
+    color: var(--error);
+    content: 'all ships must be placed';
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(10, 32px);
+    gap: 4px;
+}
+
+.board.cpu, .board.player {
+    margin-top: 16px;
+}
+
+.square {
+    background-color: var(--square);
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+}
+
+.square:hover:not(.cpu > .square):not(.disabled) {
+    background-color: var(--square-hover);
+    cursor: pointer;
+}
+
+.square.valid {
+    background-color: var(--square-valid) !important;
+}
+
+.square.ship, .square.hit {
+    background-color: var(--square-ship) !important;
+}
+
+.square.invalid, .square.miss {
+    background-color: var(--square-invalid) !important;
 }
